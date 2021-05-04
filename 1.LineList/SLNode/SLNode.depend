@@ -1,12 +1,12 @@
 # depslib dependency file v1.0
-1620109739 source:d:\study\structures-and-algorithms\1.linelist\slnode\slnode_ope.c
+1620133387 source:d:\study\structures-and-algorithms\1.linelist\slnode\slnode_ope.c
 	"SLNode_Ope.h"
 
-1620109009 d:\study\structures-and-algorithms\1.linelist\slnode\slnode_ope.h
+1620133344 d:\study\structures-and-algorithms\1.linelist\slnode\slnode_ope.h
 	<stdio.h>
 	<stdlib.h>
 
-1620109548 source:d:\study\structures-and-algorithms\1.linelist\slnode\main.c
+1620133866 source:d:\study\structures-and-algorithms\1.linelist\slnode\main.c
 	<stdio.h>
 	<stdlib.h>
 	"SLNode_Ope.h"

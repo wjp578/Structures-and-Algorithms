@@ -14,5 +14,11 @@ typedef struct Node
 void ListInitiate(SLNode **head);
 //求长度
 int ListLength(SNodeList head);
+//插入元素
+int ListInsert(SNodeList head,int pos,DataType elem);
+//删除元素
+int ListDelete(SNodeList head,int pos,DataType *elem);
 //销毁单链表
 void ListDestory(SNodeList head);
+//打印链表元素
+void ListPrint(SNodeList head);
