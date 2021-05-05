@@ -18,6 +18,8 @@ int ListLength(SNodeList head);
 int ListInsert(SNodeList head,int pos,DataType elem);
 //删除元素
 int ListDelete(SNodeList head,int pos,DataType *elem);
+//取出元素
+int ListGet(SNodeList head,int pos,DataType *elem);
 //销毁单链表
 void ListDestory(SNodeList head);
 //打印链表元素

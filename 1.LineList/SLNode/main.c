@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "SLNode_Ope.h"
 
+#define INSERT_COUNT 20
+
 int main()
 {
     SNodeList sln=NULL;
@@ -10,12 +12,13 @@ int main()
     printf("≥ı ºªØ≤‚ ‘\n");
     ListInitiate(&sln);
     printf("%d\n",ListLength(sln));
+    ListPrint(sln);
 
 
     printf("\n---------------\n");
     printf("≤Â»Î≥…π¶≤‚ ‘\n");
     int i=1;
-    for(;i<11;i++)
+    for(;i<INSERT_COUNT+1;i++)
         ListInsert(sln,i,i);
     ListPrint(sln);
     printf("%d\n",ListLength(sln));
@@ -30,10 +33,20 @@ int main()
 
     printf("\n---------------\n");
     printf("…æ≥˝‘™Àÿ≤‚ ‘\n");
-    ListDelete(sln,5,&i);
+    if(ListDelete(sln,5,&i))
+        printf("±ª…æ≥˝‘™Àÿ=%d\n",i);
+    else
+        printf("…æ≥˝ ß∞‹");
     ListPrint(sln);
-    printf("±ª…æ≥˝‘™Àÿ=%d\n",i);
     printf("%d\n",ListLength(sln));
+
+    printf("\n---------------\n");
+    printf("»°‘™Àÿ≤‚ ‘\n");
+    if(ListGet(sln,12,&i))
+        printf("»°µ√‘™Àÿ=%d\n",i);
+    else
+        printf("»°‘™Àÿ ß∞‹");
+    ListPrint(sln);
 
 
     printf("\n---------------\n");

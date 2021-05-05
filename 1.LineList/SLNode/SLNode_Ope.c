@@ -79,6 +79,28 @@ int ListDelete(SNodeList head,int pos,DataType *elem)
     return 1;
 }
 
+//取出元素
+//被取得元素由第三个参数返回
+//取成功---1
+//取失败---0
+int ListGet(SNodeList head,int pos,DataType *elem)
+{
+    int len=ListLength(head);
+    if(len+1<pos)
+    {
+        printf("输入位置非法\n");
+        return 0;
+    }
+
+    int i=0;
+    //假设被取元素位置为5
+    for(;i<pos;i++)
+        head=head->next;
+
+    *elem=head->data;
+    return 1;
+}
+
 //销毁单链表
 void ListDestory(SNodeList head)
 {
