@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1620263776 source:d:\study\structures-and-algorithms\1.linelist\cycdlnode\cycdlnode_ope.c
+	"CycDLNode_Ope.h"
+
+1620263619 d:\study\structures-and-algorithms\1.linelist\cycdlnode\cycdlnode_ope.h
+	<stdio.h>
+	<stdlib.h>
+
+1620263650 source:d:\study\structures-and-algorithms\1.linelist\cycdlnode\main.c
+	<stdio.h>
+	<stdlib.h>
+	"CycDLNode_Ope.h"
+
