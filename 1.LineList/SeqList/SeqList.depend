@@ -1,12 +1,13 @@
 # depslib dependency file v1.0
-1620052339 source:d:\study\structures-and-algorithms\1.linelist\seqlist\main.c
+1620384467 source:d:\study\structures-and-algorithms\1.linelist\seqlist\main.c
 	<stdio.h>
 	<stdlib.h>
+	<time.h>
 	"seqList_Ope.h"
 
-1620053035 d:\study\structures-and-algorithms\1.linelist\seqlist\seqlist_ope.h
+1620384832 d:\study\structures-and-algorithms\1.linelist\seqlist\seqlist_ope.h
 
-1620053035 source:d:\study\structures-and-algorithms\1.linelist\seqlist\seqlist_ope.c
+1620384832 source:d:\study\structures-and-algorithms\1.linelist\seqlist\seqlist_ope.c
 	<stdio.h>
 	<stdlib.h>
 	"seqList_Ope.h"

@@ -23,6 +23,8 @@ void ListPrint(const SeqList* sl)
     printf("\n");
 }
 
+//插入成功---1
+//插入失败---0
 int ListInsert(SeqList* sl,int index,int elem)
 {
     if(sl->sz>=MAX_LEN)
@@ -49,6 +51,11 @@ int ListInsert(SeqList* sl,int index,int elem)
     return 1;
 }
 
+//删除数据元素
+//按位置删除
+//由第三个参数带回被删除元素的值（value）
+//删除成功---1
+//删除失败---0
 int ListDelete(SeqList* sl,int index,int* elem)
 {
     if(index<1||index>sl->sz)
@@ -58,6 +65,7 @@ int ListDelete(SeqList* sl,int index,int* elem)
     }
 
     //保存被删除元素
+    if(elem!=NULL)
     *elem=sl->arr[index-1];
 
     //删除元素
@@ -71,6 +79,10 @@ int ListDelete(SeqList* sl,int index,int* elem)
     return 1;
 }
 
+//获得元素的值
+//由第三个参数带回被删除元素的值（value）
+//获取成功---1
+//获取失败---0
 int ListGet(SeqList* sl,int index,int* elem)
 {
     if(index<1||index>sl->sz)
@@ -83,3 +95,48 @@ int ListGet(SeqList* sl,int index,int* elem)
     return 1;
 
 }
+
+
+
+
+
+
+
+//删除第一个值相同结点
+//删除成功---1
+//删除失败---0
+int ListDeleteByVal(SeqList* sl,DataType val)
+{
+    int i=1,flag=0;
+    for(;i<=ListLength(sl);i++)
+    {
+        if(sl->arr[i-1]==val)
+        {
+            ListDelete(sl,i,NULL);
+            //delete已将结点数-1.无需再--；
+            flag=1;
+            break;
+        }
+    }
+    return flag;
+}
+
+//删除所有值相同结点
+//删除成功---1
+//删除失败---0
+int ListAllDeleteByVal(SeqList* sl,DataType val)
+{
+    int i=1,flag=0;
+    for(;i<=ListLength(sl);i++)
+    {
+        if(sl->arr[i-1]==val)
+        {
+            ListDelete(sl,i,NULL);
+            //delete已将结点数-1.无需再--；
+            flag=1;
+            i--;
+        }
+    }
+    return flag;
+}
+

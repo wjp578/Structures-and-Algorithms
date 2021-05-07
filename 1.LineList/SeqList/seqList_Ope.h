@@ -16,17 +16,17 @@ int ListLength(const SeqList* sl);
 //打印顺序表
 void ListPrint(const SeqList* sl);
 //插入数据元素
-//插入成功---1
-//插入失败---0
 int ListInsert(SeqList* sl,int index/*插入下标（位置）*/,int elem/*插入元素*/);
 //删除数据元素
-//由第三个参数带回被删除元素的值（value）
-//删除成功---1
-//删除失败---0
+//按位置删除
 int ListDelete(SeqList* sl,int index,int* elem);
 //获得元素的值
-//由第三个参数带回被删除元素的值（value）
-//获取成功---1
-//获取失败---0
 int ListGet(SeqList* sl,int index,int* elem);
+
+
+//算法举例
+//删除第一个值相同结点
+int ListDeleteByVal(SeqList* sl,DataType val);
+//删除所有值相同结点
+int ListAllDeleteByVal(SeqList* sl,DataType val);
 
