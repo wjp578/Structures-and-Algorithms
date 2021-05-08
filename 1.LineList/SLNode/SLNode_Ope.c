@@ -136,3 +136,93 @@ void ListPrint(SNodeList head)
     printf("\n");
     return;
 }
+
+
+
+
+
+//排序
+
+//回调函数
+//排序依据--此时为升序
+int compare_great(const void* e1,const void* e2)
+{
+    return (((*(sortdata*)e1).val)-((*(sortdata*)e2).val));
+//    return (*((sortdata*)e1).val-*((sortdata*)e2).val);
+}
+
+
+//设计算法实现单链表升序排序
+void ListSort_great(SNodeList* head)
+{
+    int len=ListLength(*head);
+    sortdata* sd=(sortdata*)malloc((len+1)*sizeof(sortdata));//多申请一个空间，从1保存数据
+    SNodeList p=*head;
+    int i=1;
+
+    //获得原数据和下标，存入数组
+    while((p=p->next))//跳过头节点
+    {
+        //从1开始保存数据
+        sd[i].pos=i;
+        sd[i].val=p->data;
+        i++;
+    }
+    //排序数组
+    qsort(sd+1/*不排序第一个元素（sd[0]）*/,len,sizeof(sortdata),compare_great);
+
+    //申请新链表
+    SNodeList newhead;
+    ListInitiate(&newhead);
+
+    //通过数组找回原链表数据，生成新结点插入新链表
+    for(i=1;i<=len;i++)
+    {
+        p=*head;
+        int j=1;
+        //找原链表data
+        for(j=1;j<=sd[i].pos;j++)
+            p=p->next;
+        ListInsert(newhead,i,p->data/*sd[i].val*/);
+    }
+
+    //连接新链表，释放旧链表
+    ListDestory(*head);
+    *head=newhead;
+
+    //释放sd数组
+    free(sd);
+    sd=NULL;
+}
+
+//在升序链表中按序插入数据,保持顺序
+//返回值---插入位置
+int LIstInsert_val(SNodeList head,DataType elem)
+{
+    int i=1;
+    SNodeList p=head;
+    //若当p=NULL而正常退出循环
+    //i正常++，相对下列注释多执行一次
+    //i此时为链表最后一个结点的后一个位置(listlenght()+1)
+    //此时i为元素正确插入的位置
+    while((p=p->next))
+    {
+        //若找到比elem大的元素，则提前break
+        //此时少执行一次i++
+        //i刚好也等于正确插入位置
+        if(p->data>=elem)
+            break;
+        i++;
+    }
+    ListInsert(head,i,elem);
+    return i;
+}
+
+
+
+
+
+
+
+
+
