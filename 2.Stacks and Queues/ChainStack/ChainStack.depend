@@ -1,13 +1,14 @@
 # depslib dependency file v1.0
-1620661172 source:d:\study\structures-and-algorithms\2.stacks and queues\chainstack\chstack_ope.c
+1620663141 source:d:\study\structures-and-algorithms\2.stacks and queues\chainstack\chstack_ope.c
 	"ChStack_Ope.h"
 
-1620661172 d:\study\structures-and-algorithms\2.stacks and queues\chainstack\chstack_ope.h
+1620663030 d:\study\structures-and-algorithms\2.stacks and queues\chainstack\chstack_ope.h
 	<stdio.h>
 	<stdlib.h>
 
-1620661172 source:d:\study\structures-and-algorithms\2.stacks and queues\chainstack\main.c
+1620663178 source:d:\study\structures-and-algorithms\2.stacks and queues\chainstack\main.c
 	<stdio.h>
 	<stdlib.h>
 	"ChStack_Ope.h"
+	<time.h>
 

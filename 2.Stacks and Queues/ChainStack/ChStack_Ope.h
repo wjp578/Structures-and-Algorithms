@@ -14,7 +14,11 @@ void StackInitiate(CStack *head);
 //判断非空
 int StackNotEmpty(CStack head);
 //入栈
-int StackInsert(CStack head,DataType val);
+void StackPush(CStack head,DataType val);
+//出栈
+int StackPop(CStack head,DataType *ret);
+//取栈顶元素
+int StackTop(CStack head);
 //打印函数
 void StackPrint(CStack head);
 //销毁链栈
