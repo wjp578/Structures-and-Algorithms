@@ -2,10 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "SeqStack_Ope.h"
+#include <string.h>
 
-#define MAX_SIZE 30
+#define MAX_SIZE 200
 
-typedef int DataType;
+typedef char DataType;
 typedef struct
 {
     DataType Stack[MAX_SIZE];
