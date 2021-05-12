@@ -51,7 +51,7 @@ int StackPop(CStack head,DataType *ret)
 
 //取栈顶元素
 //直接返回栈顶元素
-int StackTop(CStack head)
+DataType StackTop(CStack head)
 {
     if(!StackNotEmpty(head))
         return 0;

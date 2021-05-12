@@ -31,6 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="ChStack_Alg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ChStack_Alg.h" />
 		<Unit filename="ChStack_Ope.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef int DataType;
+typedef char DataType;
 typedef struct CS
 {
     DataType val;
@@ -18,7 +18,7 @@ void StackPush(CStack head,DataType val);
 //出栈
 int StackPop(CStack head,DataType *ret);
 //取栈顶元素
-int StackTop(CStack head);
+DataType StackTop(CStack head);
 //打印函数
 void StackPrint(CStack head);
 //销毁链栈
