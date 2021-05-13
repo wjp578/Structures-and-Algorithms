@@ -47,10 +47,18 @@
 //算法测试
 int main()
 {
-    char* str="A+(B-(a*v+g+r)/(r+C)/D)*E#";
+//    char* str="A+(B-(a*v+g+r)/(r+C)/D)*E#";
+    char* str="12+(13+32/3)*43#";
+
+//    char str[MAX_LENGTH]={0};
     char ret[MAX_LENGTH]={0};
+//    printf("请输入表达式(0~32767且以'#'结束输入):");
+//    scanf("%s",str);
     MidTransformLast(str,ret);
     PrintExp(ret);
+
+    int res=EvaluatingPostfixExpressions(ret);
+    printf("result=%d\n",res);
 
 
 

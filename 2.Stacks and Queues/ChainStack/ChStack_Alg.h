@@ -4,3 +4,4 @@
 
 void PrintExp(char *str);
 void MidTransformLast(char *Mid,char *Last);
+int EvaluatingPostfixExpressions(char *Last);
