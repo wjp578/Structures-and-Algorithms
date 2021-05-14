@@ -5,7 +5,17 @@ void PrintExp(char *str)
 {
     int i=0;
     while((*(str+i))!='#')
-        printf("%c",*(str+(i++)));
+    {
+        if((*(str+i))=='.')
+        {
+            printf(" ");
+            i++;
+        }
+
+        else
+            printf("%c",*(str+(i++)));
+    }
+
     printf("\n");
 }
 
@@ -105,7 +115,7 @@ void MidTransformLast(char *Mid,char *Last)
             mid_pos++;
             last_pos++;
 
-            //加点'.'分割数字
+            //加点'.'分割数字,用以计算
             if((*(Mid+mid_pos))<'0' || (*(Mid+mid_pos))>'9')
             {
                 Last[last_pos]='.';
@@ -185,7 +195,7 @@ void MidTransformLast(char *Mid,char *Last)
 int str2num(char *str)
 {
     int count=0;
-    int ret;
+    int ret=0;
     char *c=str;
     while(*c!='.')
     {
@@ -193,14 +203,14 @@ int str2num(char *str)
         c++;
     }
     int i=0;
-    for(i=0;i<=count;i++)
+    for(i=0;i<count;i++)
     {
         if(i==0)
-            ret+=str[i];
+            ret=ret+str[i]-'0';
         else
         {
             ret*=10;
-            ret+=str[i];
+            ret=ret+str[i]-'0';
         }
     }
 
@@ -245,9 +255,12 @@ int EvaluatingPostfixExpressions(char *Last)
     char s2n[6]={0};
 
     char ch;
-    while((ch=(*(Last++))!='#'))
+    while((*(Last))!='#')
     {
-        if((ch>'0' && ch<'9') || ch=='.')
+        ch=*Last;
+        Last++;
+
+        if((ch>='0' && ch<='9') || ch=='.')
             StackPush(cs_num,ch);
 
         if(ch=='+'||ch=='-'||ch=='*'||ch=='/')
@@ -263,6 +276,8 @@ int EvaluatingPostfixExpressions(char *Last)
 
             while(StackTop(cs_num)!='.')
             {
+                if(StackTop(cs_num)=='#')
+                    break;
                 StackPop(cs_num,&tem);
                 s2n[i]=tem;
                 i++;
@@ -289,6 +304,8 @@ int EvaluatingPostfixExpressions(char *Last)
 
             while(StackTop(cs_num)!='.')
             {
+                if(StackTop(cs_num)=='#')
+                    break;
                 StackPop(cs_num,&tem);
                 s2n[i]=tem;
                 i++;
@@ -351,6 +368,8 @@ int EvaluatingPostfixExpressions(char *Last)
     }
 
     num=str2num(s2n);
+
+    StackDestory(cs_num);
 
     return num;
 

@@ -6,14 +6,14 @@
 	<stdio.h>
 	<stdlib.h>
 
-1620909489 source:d:\study\structures-and-algorithms\2.stacks and queues\chainstack\main.c
+1621000750 source:d:\study\structures-and-algorithms\2.stacks and queues\chainstack\main.c
 	<stdio.h>
 	<stdlib.h>
 	"ChStack_Ope.h"
 	"ChStack_Alg.h"
 	<time.h>
 
-1620912203 source:d:\study\structures-and-algorithms\2.stacks and queues\chainstack\chstack_alg.c
+1621001076 source:d:\study\structures-and-algorithms\2.stacks and queues\chainstack\chstack_alg.c
 	"ChStack_Alg.h"
 
 1620912302 d:\study\structures-and-algorithms\2.stacks and queues\chainstack\chstack_alg.h
