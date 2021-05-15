@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1621086705 source:d:\study\structures-and-algorithms\2.stacks and queues\circular seqqueue\main.c
+	<stdio.h>
+	<stdlib.h>
+	"SeqQueue_Ope.h"
+
+1621086596 d:\study\structures-and-algorithms\2.stacks and queues\circular seqqueue\seqqueue_ope.h
+	<stdio.h>
+	<stdlib.h>
+
+1621086639 source:d:\study\structures-and-algorithms\2.stacks and queues\circular seqqueue\seqqueue_ope.c
+	"SeqQueue_Ope.h"
+
