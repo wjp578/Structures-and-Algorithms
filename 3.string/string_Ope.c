@@ -50,7 +50,7 @@ void String_Offset(Dstring *str, int pos, int offset)
 {
     int len = str->len, i = 0;
     //空字符串特殊“+1”处理---对于用户而言，字符从1开始,对应内核0位置
-    //若长度为0，着内核为-1，访问越界
+    //若长度为0，无法进入循环（字符串偏移处理），假设进入循环，访问字符串下标为-1，访问越界
     if (len == 0)
         len++;
     int count = len - pos + 1; //pos后（包括pos）元素个数|需要移动的元素个数
@@ -70,7 +70,7 @@ int Insert(Dstring *str, const Dstring *sub_str, int pos)
     //位置非法的两种情况
     //当字符串  不为  空字符串时，位置大于长度，位置非法
     //当字符串   为   空字符串时，位置大于1，位置非法
-    if ((pos > str->len && str->len != 0) || (str->len == 0 && pos > 1))
+    if ((pos > str->len && str->len != 0) || (str->len == 0 && pos > 1) || pos < 1)
     {
         printf("Illegal position");
         return 0;
@@ -81,7 +81,7 @@ int Insert(Dstring *str, const Dstring *sub_str, int pos)
         String_Offset(str, pos, sub_str->len);
         memcpy(str->String + pos - 1, sub_str->String, sub_str->len);
         str->len = str->len + sub_str->len;
-        printf("(str->len + sub_str->len) <= str->max_len\n");
+//        printf("(str->len + sub_str->len) <= str->max_len\n");
         return 1;
     }
 
@@ -92,7 +92,71 @@ int Insert(Dstring *str, const Dstring *sub_str, int pos)
     str->max_len = str->len + sub_str->len;
     str->len = str->len + sub_str->len;
     memcpy(str->String + pos - 1, sub_str->String, sub_str->len);
-    printf("Other situations\n");
+//    printf("Other situations\n");
+    return 1;
+}
+
+
+//删除子串
+//在从pos位置删除del_len个字节
+int Delete(Dstring *str, int pos, int del_len)
+{
+    if (pos > str->len || pos < 1)
+    {
+        printf("Illegal position\n");
+        return 0;
+    }
+
+    if (del_len < 0)
+    {
+        printf("Illegal delete length\n");
+        return 0;
+    }
+
+    //如果是把pos后都删除
+    //即删除长度大于 pos到字符串结尾的长度（del_len>=len-pos+1）
+    if (del_len >= str->len - pos + 1)
+    {
+        str->len = pos - 1; //pos位置也要删除
+//        printf("situation 1\n");
+        return 1;
+    }
+
+    int i = 0;
+    //（pos_del_len-1）--- 从被删除的最后个位置到第一个字符的长度 --- X
+    //len-X --- 要移位的字符个数
+    for (i = 0; i < str->len - (pos + del_len - 1); i++)
+        str->String[pos - 1 + i] = str->String[pos - 1 + i + del_len];
+    str->len = str->len - del_len;
+//    printf("situation 2\n");
+    return 1;
+}
+
+
+//取子串
+//取从pos位置开始的get_len个字节给sub_str
+int SubString(Dstring *str, int pos, int get_len,Dstring *sub_str)
+{
+    if(pos > str->len || pos < 1)
+    {
+        printf("Illegal position\n");
+        return 0;
+    }
+    else if(get_len<0||pos+get_len-1>str->len)
+    {
+        printf("Illegal get length\n");
+        return 0;
+    }
+
+    if(get_len>sub_str->max_len)
+    {
+        char *new_ptr = (char*)realloc(sub_str->String, get_len);
+        sub_str->String = new_ptr;
+//        sub_str->len=get_len;
+        sub_str->max_len=get_len;
+    }
+    memcpy(sub_str->String,str->String+pos-1,get_len);
+    sub_str->len=get_len;
     return 1;
 }
 

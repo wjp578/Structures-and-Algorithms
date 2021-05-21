@@ -24,3 +24,7 @@ void print(const Dstring *str);
 void destory(Dstring *str);
 //插入子串
 int Insert(Dstring *str, const Dstring *sub_str, int pos);
+//删除子串
+int Delete(Dstring *str, int pos, int del_len);
+//取子串
+int SubString(Dstring *str, int pos, int get_len,Dstring *sub_str);

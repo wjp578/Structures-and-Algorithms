@@ -16,13 +16,22 @@ int main()
     Assign_Operate(string1,"abdiasbd");
     print(string1);
 
-    Assign_Operate(string1,"nnnn");
+    Assign_Operate(string1,"nnmm");
     print(string1);
 
     //²åÈë²âÊÔ
     Assign_Operate(string2,"ads");
     Insert(string1,string2,1);
     print(string1);
+
+    //É¾³ı²âÊÔ
+    Delete(string1,1,0);
+    print(string1);
+
+    //È¡×Ó´®²âÊÔ
+    print(string2);
+    SubString(string1,2,1,string2);
+    print(string2);
 
 
     destory(string1);
