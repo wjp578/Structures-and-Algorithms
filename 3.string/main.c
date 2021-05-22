@@ -13,14 +13,14 @@ int main()
 //    Assign_Operate(string1,"");
 //    print(string1);
 
-    Assign_Operate(string1,"abdiasbd");
+    Assign_Operate_by_char(string1,"abdiasbd");
     print(string1);
 
-    Assign_Operate(string1,"nnmm");
+    Assign_Operate_by_char(string1,"nnmm");
     print(string1);
 
     //≤Â»Î≤‚ ‘
-    Assign_Operate(string2,"ads");
+    Assign_Operate_by_char(string2,"ads");
     Insert(string1,string2,1);
     print(string1);
 

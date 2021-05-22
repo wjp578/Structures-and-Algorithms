@@ -11,7 +11,7 @@ void Initiate(Dstring *str)
 
 
 //字符串赋值
-void Assign_Operate(Dstring *str, const char *src)
+void Assign_Operate_by_char(Dstring *str, const char *src)
 {
     int len = strlen(src);
     if (len <= str->max_len && str->max_len != 0 && str->String != NULL)
@@ -173,7 +173,8 @@ void print(const Dstring *str)
     int i;
     for (i = 0; i < str->len; i++)
         printf("%c", str->String[i]);
-    printf("\tlength=%d\tmaxlength=%d\n\n", str->len, str->max_len);
+    printf("\tlength=%d\tmaxlength=%d\n", str->len, str->max_len);
+    printf("\n");
 }
 
 
@@ -182,4 +183,49 @@ void destory(Dstring *str)
 {
     free(str->String);
     str = NULL;
+}
+
+
+//求长度
+int Length(Dstring *str)
+{
+    return str->len;
+}
+
+//比较串1，2
+//返回值<0，串1小于串2
+//= -1111,串1、2前能个字符相同，且串1短于串2(串1小于串2)
+//返回值>0，串1大于串2
+//= 1111,串1、2前能个字符相同，且串1长于串2
+//=0，相同
+int Campare(const Dstring *str1,const Dstring *str2)
+{
+    int len=str1->len<str2->len?str1->len:str2->len;
+    int i=0;
+    for(i=0;i<len;i++)
+    {
+        if(str1->String[i] != str2->String[i])
+            return str1->String[i] - str2->String[i];
+    }
+
+    if(str1->len==str2->len)
+        return 0;
+    else if(str1->len>str2->len)
+        return 1111;
+    else
+        return -1111;
+}
+
+//字符串赋值by Dstring
+void Assign_Operate_by_Dstring(Dstring *str, const Dstring *src)
+{
+    Assign_Operate_by_char(str,src->String);
+}
+
+
+//查找子串
+//BF算法
+int Search_BF(Dstring *str,int start,Dstring *sub_str)
+{
+    return 1;
 }
