@@ -30,8 +30,15 @@ int main()
 
     //»°◊”¥Æ≤‚ ‘
     print(string2);
-    SubString(string1,2,1,string2);
+    SubString(string1,3,2,string2);
     print(string2);
+
+    //≤È’“
+    //BF
+    Delete(string2,1,2);
+    print(string1);
+    print(string2);
+    printf("%d\n",Search_BF(string1,1,string2));
 
 
     destory(string1);

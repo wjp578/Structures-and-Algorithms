@@ -35,4 +35,4 @@ int Length(Dstring *str);
 //比较串
 int Campare(const Dstring *str1,const Dstring *str2);
 //查找子串---BF算法
-int Search_BF(Dstring *str,int start,Dstring *sub_str);
+int Search_BF(const Dstring *str,int start,const Dstring *sub_str);

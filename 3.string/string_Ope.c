@@ -85,13 +85,14 @@ int Insert(Dstring *str, const Dstring *sub_str, int pos)
         return 1;
     }
 
+    char *tem=sub_str->String;
     char *new_ptr = (char*)realloc(str->String, str->len + sub_str->len);
     str->String = new_ptr;
     //先偏移在改变数值（len，max_len）
     String_Offset(str, pos, sub_str->len);
     str->max_len = str->len + sub_str->len;
     str->len = str->len + sub_str->len;
-    memcpy(str->String + pos - 1, sub_str->String, sub_str->len);
+    memcpy(str->String + pos - 1, tem, sub_str->len);
 //    printf("Other situations\n");
     return 1;
 }
@@ -225,7 +226,50 @@ void Assign_Operate_by_Dstring(Dstring *str, const Dstring *src)
 
 //查找子串
 //BF算法
-int Search_BF(Dstring *str,int start,Dstring *sub_str)
+//找到子串返回  第一个匹配字符下标+1  返回值>0
+//空串和任何串匹配且返回值为0
+//找不到匹配串返回-1
+int Search_BF(const Dstring *str,int start,const Dstring *sub_str)
 {
-    return 1;
+    if(start>str->len)
+    {
+        printf("Illegal starting point\n");
+        return -1;
+    }
+
+    if(sub_str->len>str->len)
+    {
+        printf("sub_str over long");
+        return -1;
+    }
+    if(sub_str->len==0)
+        return 0;
+
+    int cur=start-1,str_s=start-1,subs_s=0;
+    int flag=0;
+    //防止误判
+    //当子串长度为1，开始位置为1
+    //均会判断找到，返回位置1
+    while(str_s<str->len)
+    {
+        while(str->String[cur]==sub_str->String[subs_s])
+        {
+            if(subs_s+1==sub_str->len||cur+1==str->len)
+                {
+                    flag=1;
+                    break;
+                }
+            cur++;
+            subs_s++;
+        }
+
+        if(subs_s+1==sub_str->len&&flag==1)
+            return str_s+1;
+
+        subs_s=0;
+        str_s++;
+        cur=str_s;
+    }
+
+    return -1;
 }
