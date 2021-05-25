@@ -13,29 +13,39 @@ int main()
 //    Assign_Operate(string1,"");
 //    print(string1);
 
-    Assign_Operate_by_char(string1,"abdiasbd");
+    Assign_Operate_by_char(string1,"abaiasbd");
     print(string1);
 
-    Assign_Operate_by_char(string1,"nnmm");
-    print(string1);
+//    Assign_Operate_by_char(string1,"nnmm");
+//    print(string1);
+
+    Assign_Operate_by_char(string2,"ads");
+    print(string2);
 
     //≤Â»Î≤‚ ‘
-    Assign_Operate_by_char(string2,"ads");
-    Insert(string1,string2,1);
-    print(string1);
+
+//    Insert(string1,string2,1);
+//    print(string1);
+    Insert(string2,string2,2);
+    print(string2);
 
     //…æ≥˝≤‚ ‘
     Delete(string1,1,0);
-    print(string1);
+//    print(string1);
 
     //»°◊”¥Æ≤‚ ‘
+//    print(string2);
+    SubString(string1,2,5,string2);
+//    print(string2);
+
+    //±»Ωœ≤‚ ‘
+    print(string1);
     print(string2);
-    SubString(string1,3,2,string2);
-    print(string2);
+    printf("%d\n",Campare(string1,string2));
 
     //≤È’“
     //BF
-    Delete(string2,1,2);
+//    Delete(string2,1,2);
     print(string1);
     print(string2);
     printf("%d\n",Search_BF(string1,1,string2));

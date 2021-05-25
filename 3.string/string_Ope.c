@@ -68,9 +68,9 @@ int Insert(Dstring *str, const Dstring *sub_str, int pos)
 {
     //pos为用户插入位置，从1开始
     //位置非法的两种情况
-    //当字符串  不为  空字符串时，位置大于长度，位置非法
+    //当字符串  不为  空字符串时，位置大于长度+1，位置非法
     //当字符串   为   空字符串时，位置大于1，位置非法
-    if ((pos > str->len && str->len != 0) || (str->len == 0 && pos > 1) || pos < 1)
+    if ((pos > str->len + 1 && str->len != 0) || (str->len == 0 && pos > 1) || pos < 1)
     {
         printf("Illegal position");
         return 0;
@@ -85,15 +85,22 @@ int Insert(Dstring *str, const Dstring *sub_str, int pos)
         return 1;
     }
 
-    char *tem=sub_str->String;
+
+    char *self_insert_ptr = (char*)malloc(sub_str->len); //以下三行避免自己插入自己出错
+    memcpy(self_insert_ptr, sub_str->String, sub_str->len);
+    int self_len = sub_str->len;
+
     char *new_ptr = (char*)realloc(str->String, str->len + sub_str->len);
     str->String = new_ptr;
     //先偏移在改变数值（len，max_len）
     String_Offset(str, pos, sub_str->len);
     str->max_len = str->len + sub_str->len;
     str->len = str->len + sub_str->len;
-    memcpy(str->String + pos - 1, tem, sub_str->len);
+    memcpy(str->String + pos - 1, self_insert_ptr, self_len);
 //    printf("Other situations\n");
+
+    free(self_insert_ptr);
+    self_insert_ptr = NULL;
     return 1;
 }
 
@@ -136,28 +143,28 @@ int Delete(Dstring *str, int pos, int del_len)
 
 //取子串
 //取从pos位置开始的get_len个字节给sub_str
-int SubString(Dstring *str, int pos, int get_len,Dstring *sub_str)
+int SubString(Dstring *str, int pos, int get_len, Dstring *sub_str)
 {
-    if(pos > str->len || pos < 1)
+    if (pos > str->len || pos < 1)
     {
         printf("Illegal position\n");
         return 0;
     }
-    else if(get_len<0||pos+get_len-1>str->len)
+    else if (get_len < 0 || pos + get_len - 1 > str->len)
     {
         printf("Illegal get length\n");
         return 0;
     }
 
-    if(get_len>sub_str->max_len)
+    if (get_len > sub_str->max_len)
     {
         char *new_ptr = (char*)realloc(sub_str->String, get_len);
         sub_str->String = new_ptr;
 //        sub_str->len=get_len;
-        sub_str->max_len=get_len;
+        sub_str->max_len = get_len;
     }
-    memcpy(sub_str->String,str->String+pos-1,get_len);
-    sub_str->len=get_len;
+    memcpy(sub_str->String, str->String + pos - 1, get_len);
+    sub_str->len = get_len;
     return 1;
 }
 
@@ -199,19 +206,19 @@ int Length(Dstring *str)
 //返回值>0，串1大于串2
 //= 1111,串1、2前能个字符相同，且串1长于串2
 //=0，相同
-int Campare(const Dstring *str1,const Dstring *str2)
+int Campare(const Dstring *str1, const Dstring *str2)
 {
-    int len=str1->len<str2->len?str1->len:str2->len;
-    int i=0;
-    for(i=0;i<len;i++)
+    int len = str1->len < str2->len ? str1->len : str2->len;
+    int i = 0;
+    for (i = 0; i < len; i++)
     {
-        if(str1->String[i] != str2->String[i])
+        if (str1->String[i] != str2->String[i])
             return str1->String[i] - str2->String[i];
     }
 
-    if(str1->len==str2->len)
+    if (str1->len == str2->len)
         return 0;
-    else if(str1->len>str2->len)
+    else if (str1->len > str2->len)
         return 1111;
     else
         return -1111;
@@ -220,7 +227,7 @@ int Campare(const Dstring *str1,const Dstring *str2)
 //字符串赋值by Dstring
 void Assign_Operate_by_Dstring(Dstring *str, const Dstring *src)
 {
-    Assign_Operate_by_char(str,src->String);
+    Assign_Operate_by_char(str, src->String);
 }
 
 
@@ -229,46 +236,46 @@ void Assign_Operate_by_Dstring(Dstring *str, const Dstring *src)
 //找到子串返回  第一个匹配字符下标+1  返回值>0
 //空串和任何串匹配且返回值为0
 //找不到匹配串返回-1
-int Search_BF(const Dstring *str,int start,const Dstring *sub_str)
+int Search_BF(const Dstring *str, int start, const Dstring *sub_str)
 {
-    if(start>str->len)
+    if (start > str->len)
     {
         printf("Illegal starting point\n");
         return -1;
     }
 
-    if(sub_str->len>str->len)
+    if (sub_str->len > str->len)
     {
         printf("sub_str over long");
         return -1;
     }
-    if(sub_str->len==0)
+    if (sub_str->len == 0)
         return 0;
 
-    int cur=start-1,str_s=start-1,subs_s=0;
-    int flag=0;
+    int cur = start - 1, str_s = start - 1, subs_s = 0;
+    int flag = 0;
     //防止误判
     //当子串长度为1，开始位置为1
     //均会判断找到，返回位置1
-    while(str_s<str->len)
+    while (str_s < str->len)
     {
-        while(str->String[cur]==sub_str->String[subs_s])
+        while (str->String[cur] == sub_str->String[subs_s])
         {
-            if(subs_s+1==sub_str->len||cur+1==str->len)
-                {
-                    flag=1;
-                    break;
-                }
+            if (subs_s + 1 == sub_str->len || cur + 1 == str->len)
+            {
+                flag = 1;
+                break;
+            }
             cur++;
             subs_s++;
         }
 
-        if(subs_s+1==sub_str->len&&flag==1)
-            return str_s+1;
+        if (subs_s + 1 == sub_str->len && flag == 1)
+            return str_s + 1;
 
-        subs_s=0;
+        subs_s = 0;
         str_s++;
-        cur=str_s;
+        cur = str_s;
     }
 
     return -1;
