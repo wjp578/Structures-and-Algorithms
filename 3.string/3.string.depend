@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1621946362 source:d:\study\structures-and-algorithms\3.string\main.c
+	<stdio.h>
+	<stdlib.h>
+	"string_Ope.h"
+
+1621856692 d:\study\structures-and-algorithms\3.string\string_ope.h
+	<stdio.h>
+	<stdlib.h>
+
+1621946814 source:d:\study\structures-and-algorithms\3.string\string_ope.c
+	"string_Ope.h"
+	<string.h>
+
